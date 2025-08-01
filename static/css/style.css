@@ -1,0 +1,361 @@
+/* 기본 스타일 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+}
+
+/* 헤더 */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #454545;
+    color: #fff;
+    padding: 10px 20px;
+    position: sticky;
+    top: 0;
+}
+
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    padding-right: 50px;
+}
+
+header nav ul li {
+    margin-left: 20px;
+}
+
+header nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/* 헤더가 항상 최상단에 보이도록 설정 */
+header {
+    position: sticky; /* 이미 있으므로 유지 */
+    top: 0;
+    z-index: 1000; /* 이미지보다 높은 값 */
+}
+
+
+/* 슬라이드 */
+.slider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.slider .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.slider .slide.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+.slider .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 텍스트 오버레이 */
+.slide-text {
+    position: absolute;
+    bottom: 40%;
+    left: 10%;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.slide.active .slide-text {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide.active .slide-text h2 {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide.active .slide-text p {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.slide-text h2 {
+    font-size: 4.0rem;
+    margin-bottom: 10px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.slide-text p {
+    font-size: 1.5rem;
+    max-width: 500px;
+    margin: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease 0.2s, transform 0.8s ease 0.2s;
+}
+
+/* 슬라이드 버튼 */
+/* 슬라이드 버튼 */
+.slide-btn {
+    position: absolute;
+    top: 70%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.slide-btn.prev {
+    left: 10%;
+}
+
+.slide-btn.next {
+    left: 16%;
+}
+
+.slide-btn:hover {
+    background: rgba(255, 255, 255, 0.5);
+    color: #000;
+    transform: translateY(-50%) scale(1.15);
+    border-color: white;
+    box-shadow: 0 6px 20px rgba(255, 255, 255, 0.5);
+}
+
+/*슬라이드이미지삽입*/
+
+.slider .slide:nth-child(1) {
+    background: url('../images/slide1.jpg') no-repeat center center/cover;
+}
+
+.slider .slide:nth-child(2) {
+    background: url('../images/slide2.jpg') no-repeat center center/cover;
+}
+
+.slider .slide:nth-child(3) {
+    background: url('../images/slide3.jpg') no-repeat center center/cover;
+}
+
+/* 각 섹션 */
+.section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section:nth-child(even) {
+    background: #f4f4f4;
+}
+
+/* 그라데이션 구분선*/
+.section {
+    padding: 60px 20px;
+    text-align: center;
+    position: relative;
+    background: #fff;
+    z-index: 1;
+}
+
+.section:not(:last-child) {
+    box-shadow: 0 15px 25px -10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 50px;
+}
+
+/* Work 섹션 */
+#work {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+#work h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+#work p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+}
+
+
+/* Our Works 섹션 */
+#work {
+    text-align: center;
+    padding: 80px 20px;
+    background: #fff;
+}
+
+#work h2 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+#work p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 40px;
+}
+
+/* 이미지 갤러리 */
+.work-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2개 가로 배치 */
+    gap: 40px;
+    max-width: 1500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 이미지 중앙 텍스트 */
+
+.work-item {
+    position: relative; /* 텍스트 위치 기준을 이미지별로 지정 */
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.work-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 20px;
+    border: 2px solid white; 
+    background: transparent;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+    pointer-events: none;
+}
+
+.work-item:hover .work-text {
+    border-color: white; 
+    color: white;        
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+
+/* 호버 시 부드러운 확대 */
+.work-item img {
+    width: 100%;
+    height: 500px;
+    object-fit: cover;
+    border-radius: 10px; 
+    transition: transform 0.3s ease;
+}
+
+
+/* 마우스 올리면 살짝 확대 */
+.work-item img:hover {
+    transform: scale(1.02); 
+}
+
+/* work-gallery는 헤더를 가리지 않도록 기본 레이어로 설정 */
+.work-gallery {
+    position: relative;
+    z-index: 1;
+}
+
+/*문의 및 상담섹션*/
+/* 문의 및 상담 섹션 */
+#estimate {
+    position: relative;
+    background: url('../images/estimate.jpg') no-repeat center center/cover;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start; /* 내부 요소를 왼쪽 정렬 */
+    padding-left: 250px; /* 왼쪽 여백 */
+    color: white;
+    text-align: left; /* 텍스트도 왼쪽 정렬 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+#estimate h2 {
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+#estimate .contact-info {
+    font-size: 1.2rem;
+    margin: 5px 0;
+}
+
+/* 온라인 견적문의 버튼 */
+.estimate-btn {
+    position: absolute;
+    right: 250px; /* 오른쪽에서 150px */
+    top: 50%;
+    display: flex;                  /* 내부 글자 정렬을 위해 flex 사용 */
+    align-items: center;            /* 수직 중앙 */
+    justify-content: center;        /* 수평 중앙 */
+    padding: 22px 35px;
+    background: #ff6600;
+    color: white;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border-radius: 30px;
+    transform: translateY(-50%);
+    transition: background 0.3s ease, transform 0.3s ease;
+    transform-origin: center;;
+}
+
+.estimate-btn:hover {
+    background: #e65c00;
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* 푸터 */
+footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
