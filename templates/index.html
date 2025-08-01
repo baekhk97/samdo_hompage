@@ -13,14 +13,24 @@
         <div class="logo">삼도애드</div>
         <nav>
             <ul>
-                <li><a href="#welcome">Welcome</a></li>
-                <li><a href="#about">회사소개</a></li>
-                <li><a href="#portfolio">Work</a></li>
-                <li><a href="#estimate">견적문의</a></li>
-                <li><a href="#live">공지사항</a></li>
+                <li><a href="index.html">Welcome</a></li>
+                <li><a href="about.html">회사소개</a></li>
+                <li><a href="work.html">Work</a></li>
+                <li><a href="estimate.html">견적문의</a></li>
+                <li><a href="notice.html">공지사항</a></li>
             </ul>
         </nav>
     </header>
+
+    <!-- welcome 새로고침 -->
+    <script>
+    const welcomeLink = document.querySelector('header nav ul li:first-child a');
+
+    welcomeLink.addEventListener('click', (e) => {
+        e.preventDefault(); // 기본 링크 동작 막기
+        window.location.href = 'index.html'; // index.html로 새로고침
+    });
+    </script>
 
     <!-- 슬라이드 배너 -->
     <section class="slider" id="slider">

@@ -39,6 +39,10 @@ header nav ul li a {
     text-decoration: none;
 }
 
+header nav ul li:first-child a {
+    color: skyblue;
+}
+
 /* 헤더가 항상 최상단에 보이도록 설정 */
 header {
     position: sticky; /* 이미 있으므로 유지 */
