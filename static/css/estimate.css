@@ -1,0 +1,94 @@
+.estimate-board, .estimate-write {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.estimate-board h2, .estimate-write h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.estimate-board h2::after, .estimate-write h2::after {
+    content: "";
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: #3399ff;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+.estimate-board table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.estimate-board table th,
+.estimate-board table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+.pagination {
+    text-align: center;
+    margin: 15px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+}
+
+.pagination a.active {
+    background: #3399ff;
+    color: #fff;
+    border-color: #3399ff;
+}
+
+.board-actions {
+    text-align: right;
+}
+
+.board-actions .btn {
+    background: #3399ff;
+    color: white;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.estimate-write form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.estimate-write input,
+.estimate-write textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.estimate-write button {
+    background: #3399ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>견적문의 상세보기 - 삼도애드</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; max-width: 700px; margin: auto;}
+  h1 { margin-bottom: 10px; }
+  .meta { color: #666; font-size: 0.9rem; margin-bottom: 20px; }
+  pre { white-space: pre-wrap; word-break: break-word; font-size: 1rem; }
+  button { margin-top: 20px; padding: 8px 16px; }
+</style>
+</head>
+<body>
+
+<div id="postDetail"></div>
+
+<button onclick="location.href='estimate.html'">목록으로 돌아가기</button>
+
+<script>
+  // URL에서 id 파라미터 받기
+  function getParam(name) {
+    const url = new URL(window.location.href);
+    return url.searchParams.get(name);
+  }
+
+  function increaseView(posts, post) {
+    post.views = (post.views || 0) + 1;
+    localStorage.setItem('estimatePosts', JSON.stringify(posts));
+  }
+
+  function loadPost() {
+    const id = Number(getParam('id'));
+    if (!id) {
+      document.getElementById('postDetail').innerHTML = '<p>잘못된 접근입니다.</p>';
+      return;
+    }
+
+    let posts = JSON.parse(localStorage.getItem('estimatePosts') || '[]');
+    let post = posts.find(p => p.id === id);
+
+    if (!post) {
+      document.getElementById('postDetail').innerHTML = '<p>게시글을 찾을 수 없습니다.</p>';
+      return;
+    }
+
+    // 조회수 증가 저장
+    increaseView(posts, post);
+
+    document.getElementById('postDetail').innerHTML = `
+      <h1>${post.title}</h1>
+      <div class="meta">작성자: ${post.author} | 날짜: ${post.date} | 조회수: ${post.views}</div>
+      <pre>${post.content}</pre>
+    `;
+  }
+
+  loadPost();
+</script>
+
+</body>
+</html>

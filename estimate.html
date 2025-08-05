@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>견적문의 - 삼도애드</title>
+<style>
+  /* 기본 폰트와 배경 */
+  body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px;
+    background: #f0f4f9;
+    color: #2a3f66;
+  }
+  h1 { 
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+  }
+  /* 컨테이너 */
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+  }
+
+  /* 검색 및 버튼 영역 */
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+  .controls input[type="text"] {
+    flex-grow: 1;
+    min-width: 250px;
+    padding: 10px 15px;
+    border: 2px solid #3399ff;
+    border-radius: 30px 0 0 30px;
+    font-size: 1rem;
+    outline-offset: 2px;
+    transition: border-color 0.3s ease;
+  }
+  .controls input[type="text"]:focus {
+    border-color: #267acc;
+  }
+  .controls button {
+    background-color: #3399ff;
+    border: none;
+    color: white;
+    padding: 11px 22px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 0 30px 30px 0;
+    transition: background-color 0.3s ease;
+  }
+  .controls button:hover {
+    background-color: #267acc;
+  }
+  .btn-write {
+    border-radius: 30px;
+    padding: 11px 25px;
+    margin-left: 10px;
+    flex-grow: 0;
+  }
+  .btn-write:hover {
+    background-color: #1e4f9a;
+  }
+
+  /* 테이블 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 1.05rem;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  thead tr {
+    background-color: #3399ff;
+    color: white;
+    text-align: center;
+    font-weight: 700;
+    user-select: none;
+  }
+  th, td {
+    padding: 14px 18px;
+    border-bottom: 1px solid #e1eaff;
+  }
+  tbody tr:hover {
+    background-color: #f1f8ff;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+  }
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* 링크 스타일 */
+  a {
+    color: #267acc;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+
+  /* 페이지네이션 */
+  .pagination {
+    margin-top: 30px;
+    text-align: center;
+  }
+  .pagination button {
+    margin: 0 5px;
+    padding: 8px 16px;
+    background-color: #3399ff;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  .pagination button:disabled {
+    background-color: #aacfff;
+    cursor: default;
+  }
+  .pagination button:hover:not(:disabled) {
+    background-color: #267acc;
+  }
+
+  /* 반응형 */
+  @media (max-width: 640px) {
+    .controls {
+      flex-direction: column;
+      gap: 10px;
+    }
+    .controls input[type="text"], .controls button, .btn-write {
+      border-radius: 30px !important;
+      width: 100%;
+      margin-left: 0;
+    }
+    .btn-write {
+      margin-top: 5px;
+    }
+    table, thead, tbody, th, td, tr {
+      display: block;
+    }
+    thead tr {
+      display: none;
+    }
+    tbody tr {
+      margin-bottom: 15px;
+      background: #f9fbff;
+      border-radius: 10px;
+      padding: 15px;
+    }
+    tbody td {
+      padding-left: 50%;
+      position: relative;
+      border: none;
+      text-align: left;
+      font-size: 0.95rem;
+    }
+    tbody td::before {
+      position: absolute;
+      left: 15px;
+      width: 45%;
+      white-space: nowrap;
+      font-weight: 700;
+      color: #3399ff;
+      content: attr(data-label);
+    }
+  }
+</style>
+</head>
+<body>
+
+  <h1>견적문의 게시판</h1>
+
+  <div class="container">
+
+    <div class="controls">
+      <div style="flex-grow:1; display:flex;">
+        <input type="text" id="searchInput" placeholder="검색어를 입력하세요 (제목/내용)" />
+        <button onclick="searchPosts()">검색</button>
+        <button onclick="clearSearch()">초기화</button>
+      </div>
+      <button class="btn-write" onclick="location.href='estimate_write.html'">글쓰기</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>번호</th>
+          <th>제목</th>
+          <th>작성자</th>
+          <th>날짜</th>
+          <th>조회수</th>
+        </tr>
+      </thead>
+      <tbody id="postList">
+        <!-- 게시글 목록 출력 -->
+      </tbody>
+    </table>
+
+    <div class="pagination" id="pagination">
+      <!-- 페이지 버튼 출력 -->
+    </div>
+  </div>
+
+<script>
+  const POSTS_PER_PAGE = 5;
+  let currentPage = 1;
+  let posts = [];
+
+  // 로컬스토리지에서 불러오기
+  function loadPosts() {
+    const data = localStorage.getItem('estimatePosts');
+    posts = data ? JSON.parse(data) : [];
+  }
+
+  // 게시판 목록 표시
+  function renderPosts(page = 1, filteredPosts = null) {
+    const list = filteredPosts || posts;
+    const tbody = document.getElementById('postList');
+    tbody.innerHTML = '';
+
+    const start = (page -1) * POSTS_PER_PAGE;
+    const end = start + POSTS_PER_PAGE;
+    const pagePosts = list.slice(start, end);
+
+    if (pagePosts.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="5" style="padding:30px 0;">게시물이 없습니다.</td></tr>';
+      renderPagination(0);
+      return;
+    }
+
+    pagePosts.forEach((post, idx) => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td data-label="번호">${list.length - (start + idx)}</td>
+        <td data-label="제목"><a href="estimate_view.html?id=${post.id}">${post.title}</a></td>
+        <td data-label="작성자">${post.author}</td>
+        <td data-label="날짜">${post.date}</td>
+        <td data-label="조회수">${post.views || 0}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    renderPagination(Math.ceil(list.length / POSTS_PER_PAGE));
+  }
+
+  // 페이지 버튼 생성
+  function renderPagination(totalPages) {
+    const paginationDiv = document.getElementById('pagination');
+    paginationDiv.innerHTML = '';
+
+    if (totalPages <= 1) return;
+
+    for(let i=1; i <= totalPages; i++) {
+      const btn = document.createElement('button');
+      btn.textContent = i;
+      if (i === currentPage) btn.disabled = true;
+      btn.onclick = () => {
+        currentPage = i;
+        const keyword = document.getElementById('searchInput').value.trim();
+        if (keyword) {
+          const filtered = filterPosts(keyword);
+          renderPosts(currentPage, filtered);
+        } else {
+          renderPosts(currentPage);
+        }
+      };
+      paginationDiv.appendChild(btn);
+    }
+  }
+
+  // 제목+내용 검색
+  function filterPosts(keyword) {
+    return posts.filter(p => 
+      p.title.includes(keyword) || p.content.includes(keyword)
+    );
+  }
+
+  function searchPosts() {
+    const keyword = document.getElementById('searchInput').value.trim();
+    currentPage = 1;
+    if (!keyword) {
+      renderPosts(currentPage);
+      return;
+    }
+    const filtered = filterPosts(keyword);
+    renderPosts(currentPage, filtered);
+  }
+
+  function clearSearch() {
+    document.getElementById('searchInput').value = '';
+    currentPage = 1;
+    renderPosts(currentPage);
+  }
+
+  // 초기 로드
+  loadPosts();
+  renderPosts(currentPage);
+</script>
+
+</body>
+</html>

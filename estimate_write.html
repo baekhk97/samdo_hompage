@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>견적문의 글쓰기 - 삼도애드</title>
+<style>
+  body { font-family: Arial, sans-serif; padding: 20px; }
+  label { display: block; margin-top: 10px; font-weight: bold; }
+  input[type=text], textarea { width: 100%; padding: 8px; margin-top: 5px; box-sizing: border-box; }
+  textarea { height: 150px; }
+  button { margin-top: 15px; padding: 8px 16px; }
+</style>
+</head>
+<body>
+
+<h1>견적문의 글쓰기</h1>
+
+<form id="writeForm">
+  <label for="title">제목</label>
+  <input type="text" id="title" required />
+
+  <label for="author">작성자</label>
+  <input type="text" id="author" required />
+
+  <label for="content">내용</label>
+  <textarea id="content" required></textarea>
+
+  <button type="submit">등록</button>
+  <button type="button" onclick="history.back()">취소</button>
+</form>
+
+<script>
+  function getToday() {
+    const d = new Date();
+    return d.toISOString().slice(0,10);
+  }
+
+  document.getElementById('writeForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const title = document.getElementById('title').value.trim();
+    const author = document.getElementById('author').value.trim();
+    const content = document.getElementById('content').value.trim();
+
+    if (!title || !author || !content) {
+      alert('모든 항목을 입력해주세요.');
+      return;
+    }
+
+    // 게시글 데이터 생성
+    let posts = JSON.parse(localStorage.getItem('estimatePosts') || '[]');
+
+    // 새 글 ID는 마지막 글 ID + 1 또는 1부터 시작
+    let newId = posts.length > 0 ? posts[posts.length - 1].id + 1 : 1;
+
+    const newPost = {
+      id: newId,
+      title,
+      author,
+      content,
+      date: getToday(),
+      views: 0
+    };
+
+    posts.push(newPost);
+    localStorage.setItem('estimatePosts', JSON.stringify(posts));
+
+    alert('게시글이 등록되었습니다.');
+    location.href = 'estimate.html';
+  });
+</script>
+
+</body>
+</html>
