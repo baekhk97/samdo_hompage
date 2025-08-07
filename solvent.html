@@ -12,6 +12,7 @@
     <!-- 헤더 -->
     <header>
         <div class="logo">삼도애드</div>
+        <button class="menu-toggle">☰</button>
         <nav>
             <ul>
                 <li><a href="index.html">Welcome</a></li>
@@ -31,7 +32,6 @@
 
   <!-- 이미지 갤러리 -->
   <section class="solvent-gallery">
-    <div class="solvent-gallery">
     <div class="solvent-item">
         <div class="solvent-caption">솔벤트 출력 1</div>
         <img src="static/images/solvent1.jpg" alt="솔벤트 출력 1">
@@ -56,4 +56,28 @@
     </footer>
 
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+
+    // 토글 버튼 클릭 시 메뉴 열기/닫기
+    toggleButton.addEventListener('click', function (e) {
+      e.stopPropagation(); // 클릭 이벤트 전파 방지
+      nav.classList.toggle('active');
+    });
+
+    // 메뉴 내부 클릭 시 이벤트 전파 막기
+    nav.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    // 문서 전체 클릭 시 메뉴 닫기
+    document.addEventListener('click', function () {
+      nav.classList.remove('active');
+    });
+  });
+</script>
+
 </html>
