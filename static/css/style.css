@@ -20,6 +20,8 @@ header {
 header .logo {
     font-size: 1.5rem;
     font-weight: bold;
+    color: #fff;
+    text-decoration: none;
 }
 
 header nav ul {
@@ -367,6 +369,13 @@ footer {
 /* =============================
    모바일 반응형 스타일
    ============================= */
+
+/* 기본 - 토글 버튼 숨기기 */
+.menu-toggle {
+    display: none;
+}
+
+
 @media (max-width: 768px) {
   /* 헤더 메뉴 토글 */
   .menu-toggle {

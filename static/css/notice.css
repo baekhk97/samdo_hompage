@@ -7,7 +7,7 @@ header .logo {
     text-decoration: none;
 }
 
-.work-hero {
+.notice-hero {
     position: relative;
     background: url('../images/work.jpg') no-repeat center center/cover;
     color: white;
@@ -19,7 +19,7 @@ header .logo {
     margin-bottom: 80px; /* 이미지와 아래 div 간격 */
 }
 
-.work-hero::before {
+.notice-hero::before {
     content: "";
     position: absolute;
     top: 0;
@@ -30,20 +30,21 @@ header .logo {
     z-index: 1;
 }
 
-.work-hero h2,
-.work-hero p {
+.notice-hero h2,
+.notice-hero p {
     position: relative;
     z-index: 2;
 }
 
-.work-hero h2 {
+.notice-hero h2 {
     font-size: 3rem;
     margin-bottom: 10px;
 }
 
-.work-hero p {
+.notice-hero p {
     font-size: 1.2rem;
 }
+
 
 /* =============================
    모바일 반응형 스타일

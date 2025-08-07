@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공지사항 - 삼도애드</title>
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/notice.css">
 </head>
 <body>
 
     <!-- 헤더 -->
     <header>
-        <div class="logo">삼도애드</div>
+        <a href="index.html" class="logo">삼도애드</a>
+        <button class="menu-toggle">☰</button>
         <nav>
             <ul>
                 <li><a href="index.html">Welcome</a></li>
@@ -22,8 +24,8 @@
         </nav>
     </header>
 
-    <!-- 공지사항 본문 -->
-    <section class="section">
+    <!-- notice 본문 -->
+    <section class="notice-hero">
         <h2>공지사항</h2>
         <p>삼도애드의 최신 소식과 공지사항을 확인하세요.</p>
     </section>
@@ -34,4 +36,28 @@
     </footer>
 
 </body>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const toggleButton = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('header nav');
+
+    // 토글 버튼 클릭 시 메뉴 열기/닫기
+    toggleButton.addEventListener('click', function (e) {
+      e.stopPropagation(); // 클릭 이벤트 전파 방지
+      nav.classList.toggle('active');
+    });
+
+    // 메뉴 내부 클릭 시 이벤트 전파 막기
+    nav.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+
+    // 문서 전체 클릭 시 메뉴 닫기
+    document.addEventListener('click', function () {
+      nav.classList.remove('active');
+    });
+  });
+</script>
+
 </html>

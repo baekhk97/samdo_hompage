@@ -1,4 +1,49 @@
 /* 회사소개 섹션 */
+header .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+}
+/* Work 페이지 상단 섹션 */
+.about-hero {
+    position: relative;
+    background: url('../images/work.jpg') no-repeat center center/cover;
+    color: white;
+    text-align: center;
+    height: 300px; /* 이미지 높이 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-bottom: 80px; /* 이미지와 아래 div 간격 */
+}
+
+.about-hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4); /* 이미지 위 어두운 오버레이 */
+    z-index: 1;
+}
+
+.about-hero h2,
+.about-hero p {
+    position: relative;
+    z-index: 2;
+}
+
+.about-hero h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.about-hero p {
+    font-size: 1.2rem;
+}
+
 .about-section {
     display: flex;
     align-items: center;
@@ -21,6 +66,8 @@
 .about-text {
     max-width: 600px;
     text-align: left;
+    box-sizing: border-box;
+    padding: 10px;
 }
 
 .about-text h2 {
@@ -42,7 +89,7 @@
     border-radius: 2px;
 }
 
-about-text p {
+.about-text p {
     font-size: 1.1rem;
     color: #444;
     line-height: 1.8;
@@ -52,21 +99,20 @@ about-text p {
 /* 회사 정보 & 지도 (양옆 배치) */
 .company-info-map {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 40px;
     justify-content: center;
-    align-items: center;
-    padding: 20px 20px;
+    align-items: flex-start;
+    padding: 20px;
     background: #fff;
-    flex-wrap: wrap;
+    flex-wrap: now wrap;
     max-width: 1200px;
     margin: 0 auto; /* 중앙 정렬 */
 }
 
 .company-info {
-    flex: 1;
-    max-width: 400px;
-    margin-left: 50px;
+    flex: 0 0 30%; /* 회사 정보는 30%만 차지 */
+    max-width: 360px;
     text-align: left;
 }
 
@@ -102,10 +148,8 @@ about-text p {
 }
 
 .map-section {
-    flex: 0 0 45%;
-    min-width: 500px;
-    max-width: 500px; /* 지도 폭 제한 */
-    margin-left: -50px;
+    flex: 0 0 55%; /* 지도는 60% 차지 */
+    max-width: 840px;
 }
 
 .map-section h2 {
@@ -117,8 +161,7 @@ about-text p {
 
 .map-section iframe {
     width: 100%;
-    max-width: 500px; /* 지도 크기 제한 */
-    height: 650px;
+    height: 600px;
     border: 0;
     border-radius: 8px;
 }
@@ -144,16 +187,105 @@ about-text p {
 
     .company-info {
         max-width: 100%;
+        margin-left: 0;
     }
 
     .map-section {
         width: 100%;
         margin-top: 20px;
         max-width: 100%;
+        margin-left: 0;
     }
 
     .map-section iframe {
         width: 100%;
         height: 300px;
     }
+    /* =============================
+   모바일 반응형 스타일
+   ============================= */
+
+/* 기본 - 토글 버튼 숨기기 */
+.menu-toggle {
+    display: none;
 }
+
+
+@media (max-width: 768px) {
+  /* 헤더 메뉴 토글 */
+  .menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+  }
+
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  header nav {
+    display: none;
+    width: 100%;
+  }
+
+  header nav.active {
+    display: block;
+  }
+
+  header nav ul {
+    flex-direction: column;
+    gap: 10px;
+    padding-left: 0;
+  }
+
+  header nav ul li {
+    margin: 10px 0;
+  }
+
+  /* 슬라이드 텍스트 크기 조정 */
+  .slide-text h2 {
+    font-size: 2rem;
+  }
+
+  .slide-text p {
+    font-size: 1rem;
+  }
+
+  /* 슬라이드 버튼 위치 조정 */
+  .slide-btn.prev {
+    left: 5%;
+  }
+
+  .slide-btn.next {
+    left: 85%;
+  }
+
+  /* Work 갤러리 1열로 */
+  .work-gallery {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .work-item img {
+    height: auto;
+  }
+
+  /* 문의 섹션 패딩 제거 및 중앙 정렬 */
+  #estimate {
+    padding-left: 20px;
+    align-items: center;
+    text-align: center;
+  }
+
+  .estimate-btn {
+    position: static;
+    transform: none;
+    margin-top: 20px;
+    width: 80%;
+    padding: 15px;
+  }
+}
+
