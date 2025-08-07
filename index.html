@@ -6,11 +6,22 @@
     <title>삼도애드</title>
     <link rel="stylesheet" href="static/css/style.css">
 </head>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const nav = document.querySelector('header nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('active');
+  });
+</script>
+
 <body>
 
     <!-- 헤더 -->
     <header>
         <div class="logo">삼도애드</div>
+        <button class="menu-toggle">☰</button>
         <nav>
             <ul>
                 <li><a href="index.html">Welcome</a></li>
