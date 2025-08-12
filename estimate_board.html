@@ -17,7 +17,7 @@
     <button class="menu-toggle">☰</button>
     <nav>
       <ul>
-        <li><a href="index.html">Welcome</a></li>
+        <li><a href="index.html">Welcome</a></li>`
         <li><a href="about.html">회사소개</a></li>
         <li><a href="work.html">Work</a></li>
         <li><a href="estimate_board.html" class="active">견적문의</a></li>
@@ -36,11 +36,6 @@
     <section class="board-section">
       <p class="total">Total 2,100건 1 페이지</p>
 
-      <div class="search-wrap">
-        <input type="text" placeholder="검색어를 입력해주세요." />
-        <button><i class="fa fa-search"></i></button>
-      </div>
-
       <table class="board-list">
         <thead>
           <tr>
@@ -53,18 +48,18 @@
         </thead>
         <tbody>
           <tr>
-            <td>2100</td>
-            <td><a href="estimate_view.html?no=2100">학회 전시장 부스 견적 문의 🔒</a></td>
-            <td>임***</td>
-            <td>2025-08-06</td>
-            <td>2</td>
+           <td data-label="번호">2100</td>
+           <td data-label="제목"><a href="estimate_view.html?no=2100">학회 전시장 부스 견적 문의 🔒</a></td>
+           <td data-label="글쓴이">임***</td>
+           <td data-label="날짜">2025-08-06</td>
+           <td data-label="조회">2</td>
           </tr>
           <tr>
-            <td>2099</td>
-            <td><a href="estimate_view.html?no=2099">Re: 이메일로 답변 드렸습니다. 🔒</a></td>
-            <td>김***</td>
-            <td>2025-08-06</td>
-            <td>1</td>
+           <td data-label="번호">2099</td>
+          <td data-label="제목"><a href="estimate_view.html?no=2099">Re: 이메일로 답변 드렸습니다. 🔒</a></td>
+          <td data-label="글쓴이">김***</td>
+          <td data-label="날짜">2025-08-06</td>
+          <td data-label="조회">1</td>
           </tr>
           <!-- 기타 행 추가 예정 -->
         </tbody>
@@ -73,6 +68,12 @@
       <div class="write-btn">
         <a href="estimate_write.html" class="btn">글쓰기</a>
       </div>
+
+         <div class="search-wrap">
+        <input type="text" placeholder="검색어를 입력해주세요." />
+        <button><i class="fa fa-search"></i></button>
+      </div>
+
 
       <div class="pagination">
         <a href="#" class="active">1</a>

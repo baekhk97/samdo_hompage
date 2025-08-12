@@ -66,12 +66,18 @@ header .logo {
 }
 
 /* 총 게시물, 페이지 정보 */
-.board-section .total {
+.board-section {
   text-align: center;
   margin-bottom: 20px;
   color: #555;
   font-weight: 600;
   font-size: 1rem;
+}
+
+.total {
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: left; /* 가운데 → 왼쪽 정렬 */
 }
 
 /* 검색창 */
@@ -125,7 +131,7 @@ header .logo {
 
 .board-list th,
 .board-list td {
-  padding: 12px;
+  padding: 8px;
   border-bottom: 1px solid #ccc;
   text-align: center;
   vertical-align: middle;
@@ -199,7 +205,17 @@ header .logo {
 /* =============================
    모바일 반응형 스타일
    ============================= */
+
 @media (max-width: 768px) {
+
+  /* 제목 라벨 숨기기 */
+  td[data-label="제목"]::before {
+    display: none !important;
+  }
+
+  body {
+    overflow-x: hidden; /* 전체 페이지에서 가로 스크롤 방지 */
+  }
 
   header {
     flex-direction: column;
@@ -245,7 +261,10 @@ header .logo {
 
   .board-section {
     width: 95%;
+    padding: 0 15px; 
+    box-sizing: border-box;
     margin-bottom: 60px;
+    overflow-x: hidden; /* 내부에서도 스크롤 방지 */
   }
 
   .search-wrap {
@@ -257,7 +276,7 @@ header .logo {
     width: 70%;
   }
 
-  /* 테이블을 카드형태로 변경 (모바일 대응) */
+  /* 모바일: 테이블 카드형 변환 */
   .board-list thead {
     display: none; /* 헤더 숨김 */
   }
@@ -276,23 +295,41 @@ header .logo {
     padding-bottom: 10px;
   }
 
+  /* 라벨 + 내용 */
   .board-list td {
-    text-align: right;
-    padding-left: 50%;
+    word-break: break-word;
+    white-space: normal;
+    overflow-wrap: break-word;
     position: relative;
+    padding: 8px 10px 8px 100px; /* 왼쪽에 라벨 공간 확보 */
+    text-align: left;
     border: none;
     border-bottom: 1px solid #eee;
   }
 
+  /* 라벨 스타일 */
   .board-list td::before {
     content: attr(data-label);
     position: absolute;
-    left: 15px;
-    width: 45%;
-    padding-left: 10px;
+    top: 8px;
+    left: 10px;
+    width: 80px;
     font-weight: 700;
-    text-align: left;
     color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* 번호, 조회 열 숨기기 */
+  .board-list tbody tr td:nth-child(1),
+  .board-list tbody tr td:nth-child(5) {
+    display: none;
+  }
+
+  /* 제목 셀은 라벨 없이 전체 폭 차지 */
+  .board-list tbody tr td:nth-child(2) {
+    padding-left: 10px !important;
   }
 
   .write-btn {
@@ -308,4 +345,6 @@ header .logo {
   .pagination {
     margin-bottom: 40px;
   }
+
 }
+
